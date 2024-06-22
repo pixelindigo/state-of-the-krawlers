@@ -17,7 +17,7 @@ Example usage (assuming Arachnarium is installed on the system):
 
 `arachnarium run crawlers/crawljax apps/hotcrp -t 5 -a url_full --nav bfs --app hotcrp --no-save-screenshots --url https://web/index.php`
 
-Or run a few at once `arachnarium run batch -w 4 arachnarium_examples/tools.yml`
+Or run a few at once `arachnarium batch -w 4 arachnarium_examples/tools.yml`
 
 Then check `experiments/` directory to see the generated data -- each experiment would be at `/<app>/<crawler>/<id>/` and contain the following dir structure:
 - `coverage/` -- code coverage files collected
