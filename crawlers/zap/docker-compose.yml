@@ -1,0 +1,6 @@
+version: "3"
+services:
+  crawler:
+    build: ${CRAWLER_DOCKER_DIR}/
+      #image: owasp/zap2docker-stable:2.12.0
+    shm_size: 2gb

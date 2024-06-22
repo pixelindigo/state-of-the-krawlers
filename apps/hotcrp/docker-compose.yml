@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  web:
+    build: ${APP_DOCKER_DIR}/web
+    restart: 'always'
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/index.php"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    depends_on: 
+      - mysql
+    volumes:
+      - ${APP_COVERAGE_DIR}:/xdebug/
+    environment:
+      MYSQL_USER: hotcrp
+      MYSQL_PASSWORD: hotcrp
+      MYSQL_DATABASE: hotcrp
+      MYSQL_ROOT_PASSWORD: root
+      EXPERIMENT_ID: ${EXPERIMENT_ID}
+  mysql:
+    image: mysql:8.0.28
+    restart: 'always'
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ${APP_DOCKER_DIR}/dump.sql:/docker-entrypoint-initdb.d/dump.sql:ro
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: hotcrp
+      MYSQL_USER: hotcrp
+      MYSQL_PASSWORD: hotcrp

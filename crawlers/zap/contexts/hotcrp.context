@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+    <context>
+        <name>Default Context</name>
+        <desc/>
+        <inscope>true</inscope>
+        <incregexes>http://web/*</incregexes>
+        <tech>
+        </tech>
+        <urlparser>
+            <class>org.zaproxy.zap.model.StandardParameterParser</class>
+            <config>{"kvps":"&amp;","kvs":"=","struct":[]}</config>
+        </urlparser>
+        <postparser>
+            <class>org.zaproxy.zap.model.StandardParameterParser</class>
+            <config>{"kvps":"&amp;","kvs":"=","struct":[]}</config>
+        </postparser>
+        <authentication>
+            <type>2</type>
+            <strategy>EACH_RESP</strategy>
+            <pollurl/>
+            <polldata/>
+            <pollheaders/>
+            <pollfreq>60</pollfreq>
+            <pollunits>REQUESTS</pollunits>
+            <form>
+                <loginurl>http://web/?post=.empty</loginurl>
+                <loginbody>------WebKitFormBoundaryAChbc7sAt16f5YQB\r\nContent-Disposition: form-data; name="email"\r\n\r\n{%username%}\r\n------WebKitFormBoundaryAChbc7sAt16f5YQB\r\nContent-Disposition: form-data; name="password"\r\n\r\n{%password%}\r\n------WebKitFormBoundaryAChbc7sAt16f5YQB\r\nContent-Disposition: form-data; name="signin"\r\n\r\nSign in\r\n------WebKitFormBoundaryAChbc7sAt16f5YQB--</loginbody>
+                <loginpageurl>http://web/?post=.empty</loginpageurl>
+            </form>
+        </authentication>
+        <users>
+            <user>0;true;dXNlcg==;2;amFla3BvdEBsb2NhbGhvc3QuY29t~akFFa1BvdA==~</user>
+        </users>
+        <forceduser>0</forceduser>
+        <session>
+            <type>0</type>
+        </session>
+        <authorization>
+            <type>0</type>
+            <basic>
+                <header/>
+                <body/>
+                <logic>AND</logic>
+                <code>-1</code>
+            </basic>
+        </authorization>
+    </context>
+</configuration>

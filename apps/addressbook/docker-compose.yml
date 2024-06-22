@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  web:
+    build: ${APP_DOCKER_DIR}/www 
+    restart: 'always'
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/addressbook-mod/addressbook/index.php"]
+      interval: 1m
+      timeout: 10s
+      retries: 10
+      start_period: 20s
+    links: 
+      - mysql
+    volumes: 
+     - ${APP_DOCKER_DIR}/www/html:/var/www/html
+     - ${APP_COVERAGE_DIR}:/xdebug/
+  mysql:
+    build: ${APP_DOCKER_DIR}/mysql
+    restart: 'always'
+    command: --init-file /data/application/init.sql
+    volumes:
+      - ${APP_DOCKER_DIR}/mysql/init.sql:/data/application/init.sql:ro
+    environment:
+      MYSQL_ROOT_PASSWORD: root

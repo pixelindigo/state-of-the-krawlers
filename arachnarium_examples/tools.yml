@@ -1,0 +1,17 @@
+experiments:
+  -
+    crawler: crawlers/arachni
+    app: apps/hotcrp
+    args: hotcrp --browser-cluster-pool-size 1 --checks - --timeout 0:5:0 http://web/index.php
+  -
+    crawler: crawlers/zap
+    app: apps/hotcrp
+    args: hotcrp --autooff -j -m 5 -t http://web/index.php
+  -
+    crawler: crawlers/skipfish
+    app: apps/hotcrp
+    args: hotcrp -L -W- -k 0:5:0 http://web/index.php
+  -
+    crawler: crawlers/wapiti
+    app: apps/hotcrp
+    args: hotcrp -m '' --max-scan-time 300 -u http://web/index.php

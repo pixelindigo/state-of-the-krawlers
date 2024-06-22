@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  web:
+    build: ${APP_DOCKER_DIR}/web
+    restart: 'always'
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/index.php"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    depends_on: 
+      - mariadb
+    volumes:
+      - ${APP_COVERAGE_DIR}:/xdebug/
+    environment:
+      WORDPRESS_USERNAME: jAEkPot
+      WORDPRESS_PASSWORD: jAEkPot
+      WORDPRESS_DATABASE_USER: dbuser
+      WORDPRESS_DATABASE_PASSWORD: dbpassword
+      WORDPRESS_DATABASE_NAME: dbname
+  mariadb:
+    image: bitnami/mariadb:10.3 
+    restart: 'always'
+    environment:
+      ALLOW_EMPTY_PASSWORD: 'yes'
+      MARIADB_USER: dbuser
+      MARIADB_PASSWORD: dbpassword
+      MARIADB_DATABASE: dbname

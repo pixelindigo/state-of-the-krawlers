@@ -1,0 +1,14 @@
+#container {
+        background: white;
+}
+#content {
+	background: white;
+	color: black;
+}
+#content a {
+	color: black;
+}
+#commentform {
+	background: white;
+	color: black;
+}

@@ -1,0 +1,45 @@
+experiments:
+  -
+    crawler: crawlers/crawljax
+    app: apps/addressbook
+    args: -t 5 -a url_full --nav bfs --app addressbook --no-save-screenshots --url http://web/addressbook-mod/addressbook/index.php
+  -
+    crawler: crawlers/crawljax
+    app: apps/drupal
+    args: -t 5 -a url_full --nav bfs --app drupal --no-save-screenshots --url http://web/
+  -
+    crawler: crawlers/crawljax
+    app: apps/hotcrp
+    args: -t 5 -a url_full --nav bfs --app hotcrp --no-save-screenshots --url http://web/index.php
+  -
+    crawler: crawlers/crawljax
+    app: apps/joomla
+    args: -t 5 -a url_full --nav bfs --app joomla --no-save-screenshots --url http://web/
+  -
+    crawler: crawlers/crawljax
+    app: apps/owncloud
+    args: -t 5 -a url_full --nav bfs --app owncloud --no-save-screenshots --url http://web/
+  -
+    crawler: crawlers/crawljax
+    app: apps/phpbb2
+    args: -t 5 -a url_full --nav bfs --app phpbb2 --no-save-screenshots --url http://web/index.php
+  -
+    crawler: crawlers/crawljax
+    app: apps/prestashop
+    args: -t 5 -a url_full --nav bfs --app prestashop --no-save-screenshots --url http://web/
+  -
+    crawler: crawlers/crawljax
+    app: apps/scarf
+    args: -t 5 -a url_full --nav bfs --app scarf --no-save-screenshots --url http://web/
+  -
+    crawler: crawlers/crawljax
+    app: apps/vanilla
+    args: -t 5 -a url_full --nav bfs --app vanilla --no-save-screenshots --url http://web/index.php
+  -
+    crawler: crawlers/crawljax
+    app: apps/wackopicko
+    args: -t 5 -a url_full --nav bfs --app wackopicko --no-save-screenshots --url http://web/
+  -
+    crawler: crawlers/crawljax
+    app: apps/wordpress
+    args: -t 5 -a url_full --nav bfs --app wordpress --no-save-screenshots --url http://web/

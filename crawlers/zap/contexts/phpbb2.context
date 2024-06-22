@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+    <context>
+        <name>Default Context</name>
+        <desc/>
+        <inscope>true</inscope>
+        <incregexes>http://web/*</incregexes>
+        <tech>
+        </tech>
+        <urlparser>
+            <class>org.zaproxy.zap.model.StandardParameterParser</class>
+            <config>{"kvps":"&amp;","kvs":"=","struct":[]}</config>
+        </urlparser>
+        <postparser>
+            <class>org.zaproxy.zap.model.StandardParameterParser</class>
+            <config>{"kvps":"&amp;","kvs":"=","struct":[]}</config>
+        </postparser>
+        <authentication>
+            <type>2</type>
+            <strategy>EACH_RESP</strategy>
+            <pollurl/>
+            <polldata/>
+            <pollheaders/>
+            <pollfreq>60</pollfreq>
+            <pollunits>REQUESTS</pollunits>
+            <form>
+                <loginurl>http://web/login.php</loginurl>
+                <loginbody>name={%username%}&amp;pass={%password%}&amp;redirect=&amp;login=Log+in</loginbody>
+                <loginpageurl>http://web/login.php</loginpageurl>
+            </form>
+        </authentication>
+        <users>
+            <user>0;true;dXNlcg==;2;akFFa1BvdA==~akFFa1BvdA==~</user>
+        </users>
+        <forceduser>0</forceduser>
+        <session>
+            <type>0</type>
+        </session>
+        <authorization>
+            <type>0</type>
+            <basic>
+                <header/>
+                <body/>
+                <logic>AND</logic>
+                <code>-1</code>
+            </basic>
+        </authorization>
+    </context>
+</configuration>

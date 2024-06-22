@@ -1,0 +1,209 @@
+/*
+Theme Name: SigComm
+Theme URI: http://www.paulisageek.com
+Description: Created for the SigComm Conference of 2006
+Author: Paul Tarjan
+Author URI: http://www.paulisageek.com
+Version: 1.0
+.
+General comments/License Statement: None
+.
+*/
+body {
+    background-color : #303e58;
+    text-align : center;
+    padding : 1em 0;
+      }
+a {
+    color : #303e58;
+    text-decoration : underline;
+      }
+a:hover {
+    color : #fff;
+    text-decoration : none;
+      }
+img {
+    border : none;
+      }
+ins {
+    text-decoration : none;
+    border-bottom : 1px dashed #eee;
+      }
+acronym, abbr, dfn {
+    border-bottom : 1px dashed #eee;
+    font-style : normal;
+      }
+blockquote {
+    border-left : 1px solid white;
+    margin : 1em 0;
+    padding : 10px;
+    background : #303e58;
+    width : 470px;
+    color : white;
+      }
+code, pre {
+    color : #fff277;
+    font-family : verdana, sans-serif;
+    color : #fff277;
+      }
+.bild-links {
+    float : left;
+    margin : 0 15px 3px 0;
+      }
+.bild-rechts {
+    float : right;
+    margin : 0 0 3px 15px;
+      }
+.center {
+    text-align : center;
+      }
+#container {
+    padding : 0px;
+    margin : 0 auto;
+    text-align : left;
+    width : 750px;
+    border : 5px solid #eee;
+    background : url(images/container.jpg);
+    line-height : 150%;
+    color : #4169e1;
+      }
+#header {
+    border-top : 1px solid #eee;
+    height : 200px;
+    text-align : center;
+    background : url(images/logo.jpg);
+    color : black;
+    font : 12px arial;
+      }
+#header h1 {
+    padding : 100px 0 0;
+    font : 22px arial;
+    text-align : center;
+      }
+#header h1 a {
+    color : black;
+    text-decoration : none;
+      }
+#header h1 a:hover {
+    color : grey;
+    text-decoration : underline;
+      }
+#content {
+    margin : 1em 15px 0.25em;
+    color : black;
+      }
+#content h2 {
+    font : italic 2.1em arial;
+    margin : 5px 0;
+    letter-spacing : 1px;
+    color : maroon;
+    text-align : center;
+
+      }
+#content h2 a {
+    text-decoration : none;
+    color : maroon;
+      }
+#content h2 a:hover {
+    text-decoration : underline;
+}
+#content h3 {
+    padding : 0 0 0 17px;
+    margin : 0.5em 0;
+    font-size : 1.4em;
+    color : #303e58;
+      }
+#content h4 {
+    font-size : 1.3em;
+    padding : 0;
+    margin : 1em 0;
+    color : #303e58;
+      }
+#content h5 {
+    font-size : 1.1em;
+    padding : 0;
+    margin : 1em 0;
+    color : #303e58;
+      }
+#content .date {
+    font-size : 1em;
+    text-align : right;
+    font-weight : bold;
+      }
+#content .meta {
+    font-size : 0.9em;
+      }
+#content .feedback {
+    margin : 0;
+    text-align : right;
+    float : right;
+    color : black;
+      }
+#content .storycontent {
+    border-bottom : 1px solid #700000;
+      }
+#commentlist li {
+    margin-bottom : 1.5em;
+    padding-bottom : 1em;
+    border-bottom : 1px solid #700000;
+    color : black;
+      }
+#commentform a {
+    color : white;
+      }
+#commentform {
+    margin : 1em 0;
+    padding : 1em;
+    border : 1px solid #300000;
+    background : #101060;
+    color : white;
+    text-align: center;
+      }
+#commentform textarea {
+    background : #eee;
+      }
+#commentform #email, #commentform #author, #commentform #url {
+    font-size : 1.1em;
+    background : #eee;
+    border : 1px solid #300000;
+    width : 180px;
+    color : black;
+      }
+#footer {
+    clear : both;
+    margin : 0px;
+    padding : 0px;
+    text-align : center;
+    font-size : x-small;
+    color : #000000;
+    line-height : 125%;
+      }
+
+#menu a {
+	font-family: 		Arial, Helvetica, sans-serif; 
+	font-size: 		11pt; 
+	text-decoration: 	none; 
+	border:			1px solid;
+	border-color:           #CCCCCC #666666 #666666 #CCCCCC;
+	font-weight: 		bold;
+	width:			100%;
+	background-color:	#9faec1;
+	}
+
+#menu a:hover  {
+	border: 		1px solid #606680; 
+	border-color:   	#666666 #CCCCCC #CCCCCC #666666;
+}
+
+#menu a {
+	text-decoration:	none;
+	display:		block;
+}
+
+#menu table { 
+	width:			100%;
+	text-align: 		center;
+	table-layout:		fixed;
+	background-color:	#303e58;
+
+}

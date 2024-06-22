@@ -1,0 +1,106 @@
+--- src/http_client.c	2023-01-25 00:09:00.966037122 +0100
++++ patched.c	2023-01-25 01:25:01.482319286 +0100
+@@ -1957,103 +1957,6 @@
+    We might eventually want to check aliases or support TLS SNI. */
+ 
+ static void check_ssl(struct conn_entry* c) {
+-  X509 *p;
+-  const SSL_CIPHER *cp;
+-
+-  /* Test if a weak cipher has been negotiated  */
+-  cp = SSL_get_current_cipher(c->srv_ssl);
+-  if(!(cp->algo_strength & SSL_MEDIUM) && !(cp->algo_strength & SSL_HIGH))
+-      problem(PROB_SSL_WEAK_CIPHER, c->q->req, 0,
+-        (u8*)SSL_CIPHER_get_name(cp),host_pivot(c->q->req->pivot), 0);
+-
+-
+-  p = SSL_get_peer_certificate(c->srv_ssl);
+-
+-  if (p) {
+-    u32 cur_time = time(0);
+-    u32 i, acnt;
+-    char *issuer, *host, *req_host;
+-    STACK_OF(GENERAL_NAME) *altnames;
+-    char *buf = 0;
+-    u8 found = 0;
+-
+-    /* Check for certificate expiration... */
+-
+-    if (ASN1_UTCTIME_cmp_time_t(p->cert_info->validity->notBefore, cur_time)
+-        != -1 ||
+-        ASN1_UTCTIME_cmp_time_t(p->cert_info->validity->notAfter, cur_time)
+-        != 1)
+-      problem(PROB_SSL_CERT_DATE, c->q->req, 0, 0,
+-              host_pivot(c->q->req->pivot), 0);
+-
+-    /* Check for self-signed certs or no issuer data. */
+-
+-    issuer = X509_NAME_oneline(p->cert_info->issuer,NULL,0);
+-
+-    if (!issuer || !p->name || !strcmp(issuer, p->name))
+-      problem(PROB_SSL_SELF_CERT, c->q->req, 0, (u8*)issuer,
+-              host_pivot(c->q->req->pivot), 0);
+-    else
+-      problem(PROB_SSL_CERT, c->q->req, 0, (u8*)issuer,
+-              host_pivot(c->q->req->pivot), 0);
+-
+-    free(issuer);
+-
+-    /* Extract CN= from certificate name, compare to destination host. If
+-       it doesn't match, step 2 is to look for alternate names and compare
+-       those to the hostname */
+-
+-    host = strrchr(p->name, '=');
+-    if (host) host++; /* Strip the = */
+-    req_host = (char*)c->q->req->host;
+-
+-    /* Step 1: compare the common name value */
+-    found = match_cert_name(req_host, host);
+-
+-    /* Step 2: compare the alternate names */
+-    if (!found) {
+-
+-      altnames = X509_get_ext_d2i(p, NID_subject_alt_name, NULL, NULL);
+-
+-      if (altnames) {
+-        acnt = sk_GENERAL_NAME_num(altnames);
+-        DEBUG("*-- Certificate has %d altnames\n", acnt);
+-
+-        for (i=0; !found && i<acnt; i++) {
+-          const GENERAL_NAME *name = sk_GENERAL_NAME_value(altnames, i);
+-
+-          if (name->type != GEN_DNS) continue;
+-
+-          buf = (char*)ASN1_STRING_data(name->d.dNSName);
+-
+-          /* No string, no match */
+-          if (!buf) continue;
+-
+-          /* Not falling for the \0 trick so we only compare when the
+-             length matches with the string */
+-
+-          if (strlen(buf) != ASN1_STRING_length(name->d.dNSName)) {
+-            problem(PROB_SSL_HOST_LEN, c->q->req, 0, (u8*)host,
+-                    host_pivot(c->q->req->pivot), 0);
+-
+-          } else {
+-              found = match_cert_name(req_host, buf);
+-          }
+-
+-        }
+-        GENERAL_NAMES_free(altnames);
+-      }
+-    }
+-
+-    if (!found)
+-      problem(PROB_SSL_BAD_HOST, c->q->req, 0, (u8*)host,
+-              host_pivot(c->q->req->pivot), 0);
+-
+-    X509_free(p);
+-
+-  } else problem(PROB_SSL_NO_CERT, c->q->req, 0, 0,
+-                 host_pivot(c->q->req->pivot), 0);
+-
+   c->ssl_checked = 1;
+ }
+ 

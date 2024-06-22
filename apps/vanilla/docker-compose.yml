@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  web:
+    build: ${APP_DOCKER_DIR}/web
+    restart: 'always'
+    healthcheck:
+      test: curl -f http://localhost/index.php | grep Vanilla
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    depends_on: 
+      - db
+    volumes:
+      - ${APP_COVERAGE_DIR}:/xdebug/
+    environment:
+      MYSQL_USER: dbuser
+      MYSQL_PASSWORD: dbpass
+      MYSQL_DATABASE: dbname
+      MYSQL_ROOT_PASSWORD: root
+  db:
+    image: mysql:5.7.37
+    restart: 'always'
+    command: --default-authentication-plugin=mysql_native_password
+    # fixes high memory usage on arch
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 26677
+        hard: 46677
+    volumes:
+      - ${APP_DOCKER_DIR}/dump.sql:/docker-entrypoint-initdb.d/dump.sql:ro
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: dbuser
+      MYSQL_PASSWORD: dbpass
+      MYSQL_DATABASE: dbname
