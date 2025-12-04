@@ -1,7 +1,10 @@
 FROM python:3.9.16-slim
 
-RUN apt update && apt install -y git make gcc libssl-dev libidn11-dev libz-dev libpcre3-dev \
-    && pip install requests==2.28.2
+RUN set -eux; \
+    apt-get update; \
+    apt-get install -y --no-install-recommends git make gcc libssl-dev libidn11-dev libz-dev libpcre3-dev; \
+    pip install requests==2.28.2; \
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /opt/skipfish
 

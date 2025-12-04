@@ -31,17 +31,19 @@ COPY crawljax/ /cj/
 
 RUN mvn clean package -DskipTests -Djavacpp.platform=linux-x86_64
 
-FROM selenium/standalone-chrome:85.0.4183.102-chromedriver-85.0.4183.87
+FROM selenium/standalone-chrome:4.21.0-20240423
 
 USER root
 
-RUN apt update -qqy && apt install -y python3 python3-pip libgtk2.0-0 openjdk-8-jdk maven
+RUN apt-get update -qqy \
+    && apt-get install -y --no-install-recommends python3 python3-pip libgtk-3-0 openjdk-17-jre xvfb \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /opt/crawljax/
 
 COPY docker-entrypoint.sh ndalgorithms-0.0.1-py3-none-any.whl ./
 
-ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64/
 RUN chmod +x docker-entrypoint.sh \
     && pip3 install jpy==0.11.1 \
     && python3 -m jpyutil -o . \
