@@ -36,3 +36,20 @@ Then check `experiments/` directory to see the generated data -- each experiment
 - [code_coverage.txz](https://github.com/pixelindigo/state-of-the-krawlers/releases/download/sec24/code_coverage.txz) contains the code coverage files (Uncompressed 43.8 GiB).
 
 You can also find the corresponding `README.md` files in each archive.
+
+## Cite
+
+```bibtex
+@inproceedings {stateofthekrawlers,
+author = {Aleksei Stafeev and Giancarlo Pellegrino},
+title = {{SoK: State of the Krawlers \textendash Evaluating the Effectiveness of Crawling Algorithms for Web Security Measurements}},
+booktitle = {33rd USENIX Security Symposium (USENIX Security 24)},
+year = {2024},
+isbn = {978-1-939133-44-1},
+address = {Philadelphia, PA},
+pages = {719--737},
+url = {https://www.usenix.org/conference/usenixsecurity24/presentation/stafeev},
+publisher = {USENIX Association},
+month = aug
+}
+```
